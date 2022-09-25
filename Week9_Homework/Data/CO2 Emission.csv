@@ -17,7 +17,6 @@ Burkina Faso,0.246046246
 Bangladesh,0.556529455
 Bulgaria,5.61085728
 Bahrain,20.26610279
-"Bahamas, The",7.291661097
 Bosnia and Herzegovina,6.382918043
 Belarus,6.122237765
 Belize,1.639550009
@@ -34,8 +33,6 @@ Chile,4.821118299
 China,7.605936961
 Cote d'Ivoire,0.421129515
 Cameroon,0.364424922
-"Congo, Dem. Rep.",0.036985586
-"Congo, Rep.",1.349316017
 Colombia,1.609870831
 Comoros,0.376076363
 Cabo Verde,1.181955675
@@ -50,7 +47,6 @@ Denmark,5.107988509
 Dominican Republic,2.535627952
 Algeria,3.977650459
 Ecuador,2.261469817
-"Egypt, Arab Rep.",2.484059911
 Eritrea,0.251635846
 Spain,5.09135092
 Estonia,7.672277909
@@ -58,13 +54,11 @@ Ethiopia,0.163813429
 Finland,7.372854761
 Fiji,1.831553275
 France,4.468770089
-"Micronesia, Fed. Sts.",1.581569507
 Gabon,2.416484011
 United Kingdom,5.220514488
 Georgia,2.717624226
 Ghana,0.658823541
 Guinea,0.309288541
-"Gambia, The",0.247050718
 Guinea-Bissau,0.171792958
 Equatorial Guinea,3.945480032
 Greece,5.59618907
@@ -78,7 +72,6 @@ Hungary,4.74663103
 Indonesia,2.290397148
 India,1.797620119
 Ireland,7.245143221
-"Iran, Islamic Rep.",7.598364845
 Iraq,4.440624129
 Iceland,4.548442258
 Israel,6.919593718
@@ -92,7 +85,6 @@ Kyrgyz Republic,1.556643256
 Cambodia,0.98140655
 Kiribati,0.765254095
 St. Kitts and Nevis,4.731801491
-"Korea, Rep.",11.79932538
 Kuwait,22.0224164
 Lao PDR,2.609681834
 Lebanon,4.076894274
@@ -139,7 +131,6 @@ Philippines,1.345029057
 Palau,13.88811733
 Papua New Guinea,0.863707514
 Poland,7.773641839
-"Korea, Dem. People's Rep.",2.18341993
 Portugal,4.339768426
 Paraguay,1.165425232
 Qatar,32.47446876
@@ -182,11 +173,9 @@ Uruguay,1.874784543
 United States,14.67341061
 Uzbekistan,3.47554445
 St. Vincent and the Grenadines,2.350962452
-"Venezuela, RB",3.939566209
 Vietnam,3.488312636
 Vanuatu,0.70027542
 Samoa,1.522124134
-"Yemen, Rep.",0.380633361
 South Africa,7.507736092
 Zambia,0.380717051
 Zimbabwe,0.80297852
