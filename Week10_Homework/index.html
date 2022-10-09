@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1 id="c-align">FIT3179 Week 10 Homework Assessment</h1>
+    <p id="c-align">Jonathan Koh Tong</p>
+    <p id="c-align">32023146</p> 
+
+    <h2 id="c-align">Air Pollution and its Effects per Country</h2>
+
+    <div id="symbol_map"></div>
+    <div id="bubble"></div>
+
+    <script>
+
+        var chart_1 = "js/homework10.vg.json";
+
+        vegaEmbed("#symbol_map", chart_1).then(function(result){
+            // Access the Vega view instance
+        }).catch(console.error);
+
+        var chart_2 = "js/Map.vg.json";
+
+        vegaEmbed("#bubble", chart_2).then(function(result){
+            // Access the Vega view instance
+        }).catch(console.error);
+
+    </script>
+</body>
+</html>
