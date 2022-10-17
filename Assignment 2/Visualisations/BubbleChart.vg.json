@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title":"Air Pollution and its Effects on Countries",
+  "background":"#E8E8E8",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/CO2%20Emission%20(Bubble).csv"
+  },
+  "params": [
+    {
+      "name": "Year",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 2002,
+        "max": 2019,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    },
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Population: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Year == Year"},
+    {"filter": "datum['CO2 emissions (kg per capita)'] <10000"},
+    {"filter": "datum.Population > Population_Above"},
+    {
+      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
+    }
+   
+  ],
+  "encoding": {
+    "x": {
+      "field": "CO2 emissions (kg per capita)",
+      "type": "quantitative",
+      "title":"CO2 emissions (KG per Capita)",
+      "axis": {"tickCount": 7,"titleFontSize":13}
+    
+    },
+    "y": {
+      "field": "Air pollution (deaths per 100000)",
+      "type": "quantitative",
+      "title": "Air Pollution Deaths per 100,000",
+      "axis": {"tickCount": 6,"titleFontSize":13}
+ 
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#addd8e",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal","title":"Country"},
+          {"field": "CO2 emissions (kg per capita)", "type": "quantitative", "format": ",.2f","title":"CO2 Emissions(kg)"},
+          {"field": "Air pollution (deaths per 100000)", "type": "quantitative", "format": ",.2f","title":"Air Pollution Deaths"},
+          {"field": "Population", "type": "quantitative", "format": ","}
+          
+          
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country Name", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country Name'] == 'China' || datum['Country Name'] == 'Germany' || datum['Country Name'] == 'Japan' || datum['Country Name'] == 'Italy' || datum['Country'] == 'Italy' || datum['Country Name'] == 'Papua New Guinea' ||  datum['Country Name'] == 'Lebanon'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal"},
+          {"field": "CO2 emissions (kg per capita)", "type": "quantitative", "format": ","},
+          
+          {"field": "Air pollution (deaths per 100000)", "type": "quantitative", "format": ","}
+          
+          
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "title": {
+      "font": "Verdana",
+      "fontSize": 25,
+      "align": "center"
+    }}
+}
