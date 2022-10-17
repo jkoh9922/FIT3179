@@ -1,68 +1,84 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/Air%20Pollutant.csv"},
-    "transform": [
-      {
-        "joinaggregate": [{"op": "sum", "field":"Value","as": "pol_val"}],
-        "groupby": ["Country Label", "Pollutant"]
-      },
-      {
-        "joinaggregate": [{"op": "count", "field":"Pollutant","as": "pol_co"}],
-        "groupby": ["Country Label", "Pollutant"]
-      },
-      {
-        "calculate": "(datum.pol_val/datum.pol_co)",
-        "as": "pol"
-      }
-    ],
-    "encoding": {
-      "y": {"field": "Country Label", "type": "ordinal","title":"Countries"},
-      "x": {"field": "Pollutant", "type": "ordinal","title":"Pollutants"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/Air%20Pollutant.csv"},
+  "width": 800,
+  "height": 700,
+  "title":"Concentration Value of Pollutants of Each Country",
+  "transform": [
+    {"filter":"datum['Country Label']!='Australia'"},
+    {"filter":"datum['Country Label']!='South Africa'"},
+    {
+      "joinaggregate": [{"op": "sum", "field":"Value","as": "pol_val"}],
+      "groupby": ["Country Label", "Pollutant"]
     },
-    "layer": [
-      {
-        "mark": "rect",
-        "encoding": {
-          "color": {
-            "field": "pol",
-            "type": "quantitative",
-            "title": "Count of Records",
-            "legend": {"direction": "vertical", "gradientLength": 200},
-            "scale": {
-              "type": "threshold",
-              "domain": [0, 10, 100, 1000]
-             
-            }
-          }
-        }
-      },
-      {
-        "mark": "text",
-        "encoding": {
-          "text": {"field": "pol", "type": "quantitative","format": ".2f"},
-          "color": {
-            "condition": {"test": "datum['pol'] < 100", "value": "black"},
-            "value": "white"
-          }
-          
-        }     
-      }
-    ],
-    "config": {
-      "scale": {
-        "bandPaddingInner": 0,
-        "bandPaddingOuter": 0
-      },
-      "view": {"step": 60},
-      "range": {
-        "ramp": {
-          "scheme": "yellowgreenblue"
-        }
-      },
-      "axis": {
-        "domain": false
-      }
+    {
+      "joinaggregate": [{"op": "count", "field":"Pollutant","as": "pol_co"}],
+      "groupby": ["Country Label", "Pollutant"]
+    },
+    {
+      "calculate": "(datum.pol_val/datum.pol_co)",
+      "as": "pol"
     }
     
+  ],
+  "encoding": {
+    "y": {"field": "Country Label", "type": "ordinal","title":"Countries","axis":{"titleFontSize":15,"labelFontSize":13}},
+    "x": {"field": "Pollutant", "type": "ordinal","title":"Types of Pollutants","axis":{"titleFontSize":15,"labelFontSize":13,"labelAngle":360}}
+    
+  },
+  "layer": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "color": {
+          "field": "pol",
+          "type": "quantitative",
+          "title": "Concentration Value",
+          "legend": {"direction": "vertical", "gradientLength": 200,"labelSeparation":8000},
+          "scale": {
+            "type": "symlog",
+            "domain":[0,15000],
+            "range":["#bdd7e7","#6baed6","#3182bd","#08519c"]
+          }
+        },
+        "tooltip": [
+          {"field": "Country Label", "type": "nominal"},
+          {"field": "pol", "type": "quantitative","title":"Concentration of Pollutant","format":".3f"}
+        ]
+      }
+    },
+    {
+      "mark":{"type":"text","fontSize":13},
+      "encoding": {
+        "text": {"field": "pol", "type": "quantitative","format": ".3f"},
+        "color": {
+          "condition": {"test": "datum['pol'] < 100", "value": "black"},
+          "value": "white"
+        }
+        
+        
+      }     
+    }
+  ],
+  "config": {
+    "title": {
+      "font": "Verdana",
+      "fontSize": 25,
+      "align": "center"
+    },
+    "scale": {
+      "bandPaddingInner": 0,
+      "bandPaddingOuter": 0
+    },
+    "view": {"step": 60},
+    "range": {
+      "ramp": {
+        "scheme": "yellowgreenblue"
+      }
+    },
+    "axis": {
+      "domain": false
+    }
   }
   
+}
