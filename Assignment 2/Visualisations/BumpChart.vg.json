@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 500,
+  "title": {
+    "text": "Air Quality Index Rankings of the Most Air Polluted Countries in the World",
+    "frame": "bounds"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/Exposure%20to%20PM_2_5.csv"
+  },
+  "params": [
+    {
+      "name": "top_countries",
+      "value": 10,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "name": "Select Rankings: "
+      }},
+      {
+      "name": "filter_year",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 2010,
+        "max": 2019,
+        "step": 1,
+        "name": "Minimum Year: "
+      }
+
+    }],
+  "transform": [
+    {
+      "sort": [
+        {"field": "Mean population exposure to PM", "order": "descending"}
+      ],
+      "window": [{"op": "rank", "as": "rank"}],
+      "groupby": ["Year"]
+    },
+    {"filter": "datum.rank <= top_countries"},
+    {"filter": "datum.Year <= filter_year"}
+  ],
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal"},
+    "y": {"field": "rank", "type": "ordinal", "title": "AQI Rankings"},
+    "color": {
+      "condition": {
+        "param": "hover",
+        "field": "Country Name",
+        "type": "nominal"
+      },
+      "value": "grey"
+    },
+    "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2}
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": ["Country Name"],
+            "on": "mouseover"
+          }
+        }
+      ],
+      "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+    },
+    {"mark": "line"},
+    {
+      "encoding": {
+        "size": {"value": 400},
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal"},
+          {
+            "field": "Mean population exposure to PM",
+            "type": "quantitative",
+            "title": "Air Quality Index"
+          }
+        ]
+      },
+      "layer": [{"mark": {"type": "point", "filled": true}}]
+    }
+  ]
+}
