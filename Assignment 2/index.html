@@ -1,46 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="events.css">
+
+    <!-- Essential Javascript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: left; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
 
-    <link rel="stylesheet" href="css/styles.css">
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'left main main main main right'
+    'left main main main main right'
+    'left footer footer footer footer right';
+  gap: 30px;
+  padding: 20px;
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: 20px ;
+  font-size: 20px;
+  font-family: Verdana;
+}
+
+h1 {
+    text-align: center;
+}
+
+</style>
 </head>
-<body>
-    <h1 id="c-align">FIT3179 Week 10 Homework Assessment</h1>
-    <p id="c-align">Jonathan Koh Tong</p>
-    <p id="c-align">32023146</p> 
+<body style="background-color: rgb(174, 167, 167)";>
 
-    <h2 id="c-align">Air Pollution and its Effects per Country</h2>
+<h1><span style = "font-size:50px ;font-family:Verdana">Air Pollution</span></h1>
 
-    <div id="symbol_map"></div>
-    <div id="bubble"></div>
-    <div id = "heat_map"></div>
+<div class="grid-container"> 
+  <div class="item3"; style="background-color:rgb(216, 213, 199);border-radius: 30px;">
+    <div id ="choro_map"></div>
+  </div>
+  <div class="item5"; style="background-color:rgb(216, 213, 199); border-radius: 30px;">
+<p><b>Asia</b> has the <b><span style = "color:red">highest</span></b> 
+  CO2 emissions per capita among all <b>continents</b>. This is because <b>Asia</b> has the <b>largest</b> population in the world.</p>
+  <p><b>Qatar</b> has the <b><span style = "color:red">highest</span></b> CO2 emssions per capita among all <b>countries</b>, with <b><span style = "color:red">32474kg</span></b> per capita. This is because <b>Qatar</b> highly depends on fossil fuels.</p>
+  <p><b>Somalia</b> has the <b><span style = "color:green">lowest</span></b> CO2 emssions per capita among all <b>countries</b>, with <b>45kg</b> per capita. </p>
+  </div>
+</div>
 
-    <script>
+<div class="grid-container"> 
+    <div class="item3"; style="background-color:rgb(216, 213, 199);border-radius: 30px;">
+      <div id ="bubble"></div>
+    </div>
+    <div class="item5"; style="background-color:rgb(216, 213, 199); border-radius: 30px;">
+       <p><b>China</b> has <b><span style = "color:red">worsen</span></b> in terms of CO2 emssions per capita thorughout the years.</p>
+        <p><b>Italy</b> and <b>Germany</b> has <b><span style = "color:green">improved</span></b> 
+        in terms of CO2 emssions per capita thorughout the years. </p>
+        <p><b>Japan</b> <b><span style = "color:grey">remains</span></b> around the 8000kg-10000kg 
+        per capita interval throughout the years.</p>
 
-        var chart_1 = "Visualisations/homework10.vg.json";
+       <p><b>Papua New Guinea</b> remains as the <b><span style = "color:red">highest</span></b> air pollution deaths among all countries throughout the years,
+    however, it has <b><span style = "color:green">improved</span></b> in terms of air pollution deaths throuhgout the years.</p>
+    </div>
+  </div>
 
-        vegaEmbed("#symbol_map", chart_1).then(function(result){
-            // Access the Vega view instance
-        }).catch(console.error);
-        
+<div class="grid-container"> 
+<div class="item3"; style="background-color:rgb(216, 213, 199);border-radius: 30px;">
+    <div id ="heat_map"></div>
+</div>
+<div class="item5"; style="background-color:rgb(216, 213, 199); border-radius: 30px;">
+    <p>Polluntant <b>NO2</b> is the <b><span style = "color:red">most harmful</span></b> pollutant among <b>all</b> pollutants. It is generated from the combustion of fuel engines and industry.</p>
 
-        var chart_2 = "Visualisations/Map.JSON";
+    <p><b>United Kingdom</b> has the <b><span style = "color:red">most</span></b> concentrated <b>NO2</b> among all countries.
+        <b>Canada</b> has the <b>least</b> concentrated <b>NO2</b> among all countries.</p>
+    </div>
+</div>
 
-        vegaEmbed("#bubble", chart_2).then(function(result){
-            // Access the Vega view instance
-        }).catch(console.error);
+<div class="grid-container"> 
+    <div class="item3"; style="background-color:rgb(216, 213, 199);border-radius: 30px;">
+      <div id ="bump_chart"></div>
+    </div>
+    <div class="item5"; style="background-color:rgb(216, 213, 199); border-radius: 30px;">
+        <p><b>India</b> has the <b><span style = "color:red">longest</span></b> number 1 spot for <b>6</b> years. The major 
+        sources to <b>India's</b> pollution are <b>coal-fired power plants</b>, <b>factories</b> and <b>vehicles</b>.</p>
+        <p><b>Iraq</b> has the <b>longest</b> number 10 spot for <b>9</b> years.</p>
+        <p><b>Bahrain</b> is the only country that has <b><span style = "color:green">lowered</span></b> its rankings throughout the years.</p>
+    </div>
+  </div>
 
-        var chart_3 = "Visualisations/HeatMap.vg.json";
-
-        vegaEmbed("#heat_map", chart_3).then(function(result){
-            // Access the Vega view instance
-        }).catch(console.error);
-
-    </script>
+    <script src="vegalite_vis.JS"></script>
 </body>
-
-
 </html>
