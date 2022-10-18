@@ -3,7 +3,7 @@
   "width": 800,
   "height": 600,
   "title":"Air Pollution and its Effects on Countries",
-  "background":"#E8E8E8",
+  "background":"#dedcdc",
   "data": {
     "url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/CO2%20Emission%20(Bubble).csv"
   },
