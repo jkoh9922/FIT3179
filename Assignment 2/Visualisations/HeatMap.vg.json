@@ -1,9 +1,32 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "https://raw.githubusercontent.com/jkoh9922/FIT3179/main/Assignment%202/Data/Air%20Pollutant.csv"},
+  "background":"rgb(216, 213, 199)",
   "width": 800,
   "height": 700,
   "title":"Concentration Value of Pollutants of Each Country",
+  "params":[{
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "Europe",
+          "Asia"
+        
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "Europe",
+          "Asia"
+         
+        ],
+        "name": "Continent Selection: "
+      }
+    }],
+
   "transform": [
     {"filter":"datum['Country Label']!='Australia'"},
     {"filter":"datum['Country Label']!='South Africa'"},
@@ -48,17 +71,32 @@
       }
     },
     {
+      "mark": {"type":"rect"},
+      "encoding": {
+        "color": {
+           "scale": {
+            "type": "symlog",
+            "domain":[0,15000],
+            "range":["#bdd7e7","#6baed6","#3182bd","#08519c"]
+          },
+          "condition":{"test":"Continent_selection == null || datum.Continent ==Continent_selection","value":null},"value":"rgb(216, 213, 199)"
+        },
+        "tooltip": [
+          {"field": "Country Label", "type": "nominal"},
+          {"field": "pol", "type": "quantitative","title":"Concentration of Pollutant","format":".3f"}
+        ]
+      }
+    },
+    {
       "mark":{"type":"text","fontSize":13},
       "encoding": {
         "text": {"field": "pol", "type": "quantitative","format": ".3f"},
         "color": {
           "condition": {"test": "datum['pol'] < 100", "value": "black"},
-          "value": "white"
+          "value": "white"},
+          "opacity":{"condition":{"test":"Continent_selection == null || datum.Continent == Continent_selection", "value": "1"},"value":0}
         }
-        
-        
-      }     
-    }
+      }
   ],
   "config": {
     "title": {
