@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Global CO2 Emissions per capita in 2019",
+  "background":"rgb(216, 213, 199)",
   "width": 800,
   "height": 500,
   "data": {
@@ -54,7 +55,7 @@
           "type": "quantitative",
           "scale": {
             "type": "log",
-            "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+            "range": ["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]
           }
         },
         "tooltip": [
@@ -64,5 +65,12 @@
       }
     }
     
-  ]
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "title": {
+      "font": "Verdana",
+      "fontSize": 25,
+      "align": "center"
+    }}
 }
