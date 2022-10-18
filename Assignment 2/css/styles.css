@@ -2,24 +2,34 @@
     text-align: center;
 }
 
-/* Alignment of symbol map */
-#symbol_map {
-    top: 50px;
-    bottom: 50px;
-    left: 200px;
-    right: 200px;
+.title{
+    padding: 20px; /* some padding */
+    text-align: center; /* center the text */
+    background: grey; 
+    color: black; /* black text color */
+  }
+
+.item1 { grid-area: header; }
+.item2 { grid-area: left; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+display: grid;
+grid-template-areas:
+    'left main main main main right'
+    'left main main main main right'
+    'left footer footer footer footer right';
+gap: 30px;
+padding: 20px;
 }
-/* Alignment of bubble */
-#bubble {
-    top: 50px;
-    bottom: 50px;
-    left: 200px;
-    right: 200px;
+
+.grid-container > {
+text-align: center;
+padding: 20px ;
+font-size: 30px;
+font-family: 'Verdana';
 }
-/* Alignment of heatmap*/
-#heat_map {
-    top: 50px;
-    bottom: 50px;
-    left: 200px;
-    right: 200px;
-}
+  
+  
