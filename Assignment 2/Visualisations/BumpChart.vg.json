@@ -2,8 +2,9 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 700,
   "height": 500,
+  "background":"#dedcdc",
   "title": {
-    "text": "Air Quality Index Rankings of the Most Air Polluted Countries in the World",
+    "text": "Air Quality Index Rankings of the Most Air Polluted Countries",
     "frame": "bounds"
   },
   "data": {
@@ -85,5 +86,12 @@
       },
       "layer": [{"mark": {"type": "point", "filled": true}}]
     }
-  ]
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "title": {
+      "font": "Verdana",
+      "fontSize": 25,
+      "align": "center"
+    }}
 }
